@@ -24,7 +24,7 @@ def get_mesage():
         return
 
     try:
-        pprint.pprint(json.loads(msg.body), ident=2)
+        pprint.pprint(json.loads(msg.body), indent=2)
     except ValueError:
         print msg.body
     finally:

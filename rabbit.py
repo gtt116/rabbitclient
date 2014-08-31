@@ -5,7 +5,7 @@ from kombu import Exchange, Queue, Connection
 
 exchange_name = 'neutron'
 routing_key = 'neutron_notifications.info'
-amqp_connection = 'amqp://guest:ntse@localhost'
+amqp_connection = 'amqp://guest:guest@10.120.120.30'
 conn = Connection(amqp_connection)
 
 

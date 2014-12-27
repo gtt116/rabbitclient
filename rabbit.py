@@ -54,7 +54,7 @@ class RabbitClient(object):
             return
 
         try:
-            pprint.pprint(json.loads(msg.body), indent=2)
+            print json.dumps(json.loads(msg.body), indent=2)
         except ValueError:
             print msg.body
 

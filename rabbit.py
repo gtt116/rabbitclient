@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 A Kombu based RabbitMQ server client
 """

@@ -2,11 +2,17 @@
 """
 A Kombu based RabbitMQ server client
 """
+import sys
 import argparse
 import json
 import pprint
-from kombu.messaging import Producer
-from kombu import Exchange, Queue, Connection
+try:
+    from kombu.messaging import Producer
+    from kombu import Exchange, Queue, Connection
+except ImportError:
+    print 'Please install kombu before running this script.'
+    print 'You can run it on Nova compute.'
+    sys.exit(1)
 
 
 class RabbitClient(object):

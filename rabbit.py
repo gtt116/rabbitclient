@@ -36,6 +36,7 @@ class RabbitClient(object):
         # queue = Queue(queue_name, exchange=exchange,
         #      routing_key=routing_key, channel=conn.channel())
         queue = Queue(queue_name, channel=self._channel())
+        print "Deleting queue %s" % queue
         return queue.delete()
 
     def queue_get(self, queue_name, ack=True):
@@ -92,4 +93,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     rabbit = RabbitClient(args.host, args.username, args.password)
-    rabbit.dispatch(args.action, args)
+    print rabbit.dispatch(args.action, args)

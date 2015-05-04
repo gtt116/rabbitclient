@@ -39,6 +39,11 @@ class RabbitClient(object):
         print "Deleting queue %s" % queue
         return queue.delete()
 
+    def queue_purge(self, queue_name):
+        queue = Queue(queue_name, channel=self._channel())
+        print "Purging queue %s" % queue
+        return queue.purge()
+
     def queue_get(self, queue_name, ack=True):
         queue = Queue(queue_name, channel=self._channel())
         msg = queue.get()
@@ -71,6 +76,8 @@ class RabbitClient(object):
             return self.queue_get_print(args.queue_name)
         if action_name == 'queue-delete':
             return self.queue_delete(args.queue_name)
+        if action_name == 'queue-purge':
+            return self.queue_purge(args.queue_name)
 
         raise ValueError("Method not support: %s" % action_name)
 
@@ -86,6 +93,9 @@ if __name__ == '__main__':
 
     delete_parser = subparser.add_parser('queue-delete')
     delete_parser.add_argument('queue_name')
+
+    purge_parser = subparser.add_parser('queue-purge')
+    purge_parser.add_argument('queue_name')
 
     get_parser = subparser.add_parser('queue-get')
     get_parser.add_argument('queue_name')
